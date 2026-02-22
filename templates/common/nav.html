@@ -1,0 +1,43 @@
+{% load static %}
+
+<nav class="main-menu">
+    <ul>
+        <li class="item"><a href="/">Welcome</a></li>
+
+        <li class="item dropdown">
+            <a href="#">Menu</a>
+
+            <div class="pannele">
+                <div class="container-sub-menu">
+                    <ul class="sub-menu">
+                        <h3>
+                            <li class="carte"><a href="{% url 'food:food_menu' %}">Food Menu</a></li>
+                        </h3>
+                        <li class="item-panneau"><a href="{% url 'food:food_menu' %}">Food menu</a></li>
+                        <li class="item-panneau"><a href="{% url 'food:food_allergies' %}">Allergies Menu</a></li>
+                    </ul>
+                    <figure>
+                        <img src="{% static 'images/french-food-confit-de-canard.webp' %}" width="300" height="200" alt="Food">
+                    </figure>
+                </div>
+
+                <div class="container-sub-menu">
+                    <ul class="sub-menu">
+                        <h3>
+                            <li class="carte"><a href="#">Drinks</a></li>
+                        </h3>
+                        <li class="item-panneau"><a href="#">Wines</a></li>
+                        <li class="item-panneau"><a href="#">All drinks</a></li>
+                    </ul>
+                    <figure>
+                        <img src="{% static 'images/wine-images.jpg' %}" width="300" height="200" alt="Wine">
+                    </figure>
+                </div>
+            </div>
+        </li>
+
+        <li class="item"><a href="#">From the Chef</a></li>
+        <li class="item"><a href="#">Reviews</a></li>
+        <li class="item"><a href="#">Contacts</a></li>
+    </ul>
+</nav>

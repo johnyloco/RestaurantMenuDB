@@ -1,0 +1,52 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}{{ food.title }}Details{% endblock %}
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/food/food-details.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <h1>{{ food.title }}</h1>
+
+        <div class="image-box">
+            {% if food.image %}
+                <img src="{{ food.image.url }}" alt="{{ food.title }}" class="food-display-img">
+            {% else %}
+                <div class="no-photo-placeholder">
+                    <span>No Photo Available</span>
+                </div>
+            {% endif %}
+        </div>
+
+        <ul>
+            <li><strong>Category:</strong> {{ food.get_category_display }}</li>
+            <li><strong>Price:</strong> {{ food.price }}€</li>
+            <li><strong>Description:</strong> {{ food.description }}</li>
+            <li><strong>Published on:</strong> {{ food.publishing_date }}</li>
+            <li><strong>Slug (URL):</strong> {{ food.slug }}</li>
+
+            <li><strong>Allergies:</strong>
+                {% if food.allergies.all %}
+                    {% for allergy in food.allergies.all %}
+                        {{ allergy.name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                {% else %}
+                    None
+                {% endif %}
+            </li>
+        </ul>
+
+        <hr>
+
+        <div class="actions">
+            <a href="{% url 'food:edit_food' food.pk %}">Edit this item</a> |
+
+            <a href="{% url 'food:delete_food' food.pk %}" style="color: red;">Delete this item</a> |
+
+            <a href="{% url 'food:food_menu' %}">Back to Menu</a>
+        </div>
+    </div>
+{% endblock %}

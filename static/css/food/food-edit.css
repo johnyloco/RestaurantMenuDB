@@ -1,0 +1,100 @@
+/* Shared Container Style for Add, Edit, and Delete */
+main .add-container,
+main .edit-container,
+main .delete-container {
+    background-color: rgb(255, 254, 246);
+    padding: 40px;
+    margin: 40px auto;
+    width: 80vw;
+    max-width: 600px;
+    box-shadow: rgba(181, 177, 177, 0.5) 5px 5px 5px, rgba(119, 119, 119, 0.5) -5px -5px 5px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 25px;
+    color: #333;
+    font-size: 2.2em;
+}
+
+/* Form Alignment and Flexbox stacking */
+.form-actions,
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
+/* Ensure labels and inputs inside form align left */
+form p {
+    text-align: left;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+form input,
+form textarea,
+form select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box; /* Prevents padding from breaking width */
+}
+
+/* Save Button (Success Green) */
+button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    width: fit-content;
+    font-size: 1rem;
+    transition: background 0.2s;
+}
+
+button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+/* Specific Style for Delete Button (Warning Red) */
+.delete-container button[type="submit"] {
+    background-color: #dc3545;
+}
+
+.delete-container button[type="submit"]:hover {
+    background-color: #c82333;
+}
+
+/* Cancel Link Button Styling */
+.add-container .btn,
+.edit-container .btn,
+.delete-container a {
+    text-decoration: none;
+    color: #6c757d;
+    font-weight: bold;
+    font-size: 0.9em;
+    transition: color 0.2s;
+}
+
+.add-container .btn:hover,
+.edit-container .btn:hover,
+.delete-container a:hover {
+    color: #333;
+    text-decoration: underline;
+}
+
+/* Confirmation Message Text */
+.confirmation-message {
+    margin-bottom: 30px;
+    font-size: 1.1em;
+    color: #555;
+    line-height: 1.6;
+}

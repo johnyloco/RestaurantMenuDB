@@ -1,10 +1,147 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <title>Accueil</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'images/foodfavicon.png' %}">
+    <meta name="author" content="Aleks">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common/home.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common/main.css' %}">
 </head>
-<body>
 
+<body>
+<header>
+    <!-- Logo -->
+    <div class="logo2">
+        <h1>Restaurant "Le 3C"</h1>
+    </div>
+    <!-- End Logo -->
+
+    <!-- Menu Nav-->
+    {% include 'common/nav.html' %}
+    <!-- End Menu Nav -->
+
+
+    <!-- welcome photo -->
+    <figure class="mainphoto">
+        <img src="{% static 'images/hotel3c.jpg' %}">
+    </figure>
+
+    <!-- End welcome photo -->
+
+</header>
+
+
+<!-- Main content -->
+<main>
+    <div class="main-content">
+        <section id="intro">
+            <div class="decorator1">
+                <h1>Location</h1>
+            </div>
+            <p>
+            <pre>  Nestled in the heart of the Swiss Riviera, the Hôtel des Trois Couronnes***** is a rare gem where timeless elegance, tranquility, and art de vivre come together.
+
+Overlooking Lake Geneva and the majestic Alps, our property offers breathtaking, ever-changing views throughout the seasons. Located just one hour from Geneva Airport and a few minutes from the historic center of Vevey, it is the ideal base to explore the region’s treasures—from the chocolate traditions of Gruyère to the UNESCO-listed Lavaux vineyards.
+
+With 71 bright rooms, including 25 Suites and Junior Suites that blend classical charm with modern comfort, the hotel offers a refined and personalized experience. On the culinary side, discover Manabu, our fine Japanese dining experience, or enjoy fresh Mediterranean flavors at Le 3C, our stylish yet relaxed brasserie.
+
+For a true moment of relaxation, the Puressens Spa welcomes you “with your feet in the water,” featuring an indoor pool, exclusive treatments, and soothing panoramas.
+                </pre>
+
+        </section>
+
+        <section id="content">
+            <div class="decorator1">
+                <h1>About the restaurant</h1>
+            </div>
+            <p>
+                Le 3C is located in the elegant Belle Époque dining room, offering lake and mountain views, and in fair
+                weather, service on its private terrace.
+            </p>
+
+            <p class="contrary">
+            <figure>
+                <img src="{% static 'images/filletb.png' %}" alt="@feaut fillet de boeuf">
+                <figcaption>Feaux filet de boeuf</figcaption>
+            </figure>
+            <p>
+                The Head Chef of the Le 3C restaurant is Morgan Genelle, who joined in March 2025 in charge of the
+                restaurant and of banqueting. His bistronomic cuisine blends Mediterranean and Alpine flavours with
+                elegance, focusing on seasonal ingredients and sustainability.
+                Le 3C welcomes you in a chic yet relaxed veranda setting, with views of the lake and mountains, and in
+                fair weather, on the panoramic terrace surrounding the fountain.
+                Be ready for your great culinary journey at Le 3C!
+
+            </p>
+            </p>
+        </section>
+
+        <section id="conclusion">
+            <div class="decorator1">
+                <h1>Vevey’s Charm</h1>
+            </div>
+            <p>
+                The old town of Vevey is a maze of narrow streets that are great to stroll down. Round every corner in
+                this pedestrian zone, you will find fountains and statues, some of which are hundreds of years old,
+                coloured emblems and frescoes, as well as numerous cafes, terraces and shops.
+            </p>
+        </section>
+
+        <section id="extra">
+            <div class="decorator1">
+                <h1>Lavaux Unesco</h1>
+            </div>
+            <p class="contrary">
+            <figure>
+                <img src="{% static 'images/lavaux.png' %}" alt="@Lavaux Unesco">
+                <figcaption>Lavaux Unesco</figcaption>
+            </figure>
+            <pre>
+                    The Lavaux Vineyard Terraces, stretching for about 30 km along the south-facing northern shores of Lake Geneva from the Chateau de Chillon to the eastern outskirts of Lausanne in the Vaud region, cover the lower slopes of the mountainside between the villages and the lake.
+
+                    Although there is some evidence that vines were grown in the area in Roman times, the present vine terraces can be traced back to the 11th century, when Benedictine and Cistercian monasteries controlled the area.
+
+                    It is an outstanding example of a centuries-long interaction between people and their environment, developed to optimize local resources so as to produce a highly valued wine that has always been important to the economy.
+                    </pre>
+            </p>
+        </section>
+    </div>
+
+    <div class="secondary-content">
+        <h1>Latest news</h1>
+        <figure>
+            <img src="{% static 'images/pasglobe.jpg' %}" alt="@logo du globule">
+        </figure>
+        <h2>Opening hours</h2>
+        <p>
+            The restaurant is open everyday between:
+            <br>
+            <time datetime="12:30">12:30</time>
+            to
+            <time datetime="13:30">13:30</time>
+            <br>
+            and
+            <br>
+            <time datetime="19:00">19:00</time>
+            to
+            <time datetime="21:30">21:30</time>
+        </p>
+        <figure>
+            <img src="{% static 'images/pasblog.jpg' %}" alt="@logo du globule">
+        </figure>
+        <h2>Latest menu</h2>
+        <p>
+            Enjoy our seasonal spring menu. For more details go to Menu
+        </p>
+    </div>
+
+</main>
+<!-- End Main content -->
+
+<!-- Footer -->
+{% include 'common/footer.html' %}
+<!-- End Footer -->
 </body>
 </html>
