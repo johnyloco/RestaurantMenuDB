@@ -1,10 +1,107 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'common/base.html' %}
+{% load static %}
 
-</body>
-</html>
+
+{% block title %}{{ food.title }}Food Menu{% endblock %}
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/food/food-menu.css' %}">
+{% endblock %}
+
+{% block content %}
+    <header>
+        <figure>
+            <figcaption><h1>Restaurant</h1></figcaption>
+            <img src="{% static 'images/le3c.png' %}" alt="Our Menu">
+        </figure>
+    </header>
+
+    <main>
+        <div class="filter-header" style="margin-bottom: 20px;">
+            <button onclick="document.getElementById('allergy-form').toggleAttribute('hidden')">
+                Filtrer par Allergies
+            </button>
+            <a href="{% url 'food:food_menu' %}" class="btn">Réinitialiser</a>
+        </div>
+
+        <div id="allergy-form" hidden>
+            <form method="get">
+                {{ filter_form.as_p }}
+                <button type="submit">Appliquer</button>
+            </form>
+        </div>
+        <div class="admin-buttons">
+            <a href="{% url 'food:food_add' %}" class="card-link">
+                <div class="admin-card">
+                    <h3>+ Add New Item</h3>
+                </div>
+            </a>
+        </div>
+
+        <div class="foodmenu">
+
+            <div class="starters">
+                <h2>Nos Entrées</h2>
+                {% for food in foods %}
+                    {% if food.category == 'STARTER' %}
+                        <a href="{% url 'food:food_details' food.pk %}" style="text-decoration: none; color: inherit;">
+                            <div class="dish">
+                                <h3>{{ food.title }}</h3>
+                                <span class="alergies">
+                                Contains:
+                                    {% for allergy in food.allergies.all %}
+                                        {{ allergy.name }}{% if not forloop.last %}, {% endif %}
+                                    {% empty %}Aucun{% endfor %}
+                            </span>
+                                <p>{{ food.description }}</p>
+                                <span class="price">{{ food.price }} CHF</span>
+                            </div>
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <div class="mains">
+                <h2>Nos Plats Principaux</h2>
+                {% for food in foods %}
+                    {% if food.category == 'MAIN' %}
+                        <a href="{% url 'food:food_details' food.pk %}" style="text-decoration: none; color: inherit;">
+                            <div class="dish">
+                                <h3>{{ food.title }}</h3>
+                                <span class="alergies">
+                                Contains:
+                                    {% for allergy in food.allergies.all %}
+                                        {{ allergy.name }}{% if not forloop.last %}, {% endif %}
+                                    {% empty %}Aucun{% endfor %}
+                            </span>
+                                <p>{{ food.description }}</p>
+                                <span class="price">{{ food.price }} CHF</span>
+                            </div>
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <div class="desserts">
+                <h2>Nos Desserts</h2>
+                {% for food in foods %}
+                    {% if food.category == 'DESSERT' %}
+                        <a href="{% url 'food:food_details' food.pk %}" style="text-decoration: none; color: inherit;">
+                            <div class="dish">
+                                <h3>{{ food.title }}</h3>
+                                <span class="alergies">
+                                Contains:
+                                    {% for allergy in food.allergies.all %}
+                                        {{ allergy.name }}{% if not forloop.last %}, {% endif %}
+                                    {% empty %}Aucun{% endfor %}
+                            </span>
+                                <p>{{ food.description }}</p>
+                                <span class="price">{{ food.price }} CHF</span>
+                            </div>
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+        </div>
+    </main>
+{% endblock %}

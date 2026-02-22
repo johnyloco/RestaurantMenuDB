@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 from common.models import Allergy
 from common.validators import FileSizeValidator, RangeValidator
@@ -70,6 +71,12 @@ class Drink(models.Model):
         blank=True,
     )
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(f"{self.title}")
+
+        super().save(*args, **kwargs)
+
 
 class Wine(models.Model):
     class WineCategory(models.TextChoices):
@@ -113,6 +120,13 @@ class Wine(models.Model):
         unique=True,
         blank=True
     )
+
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(f"{self.title}")
+
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.title} ({self.get_category_display()})"

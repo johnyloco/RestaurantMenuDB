@@ -1,0 +1,25 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}Food Add{% endblock %}
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/food/food-edit.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    <div class="delete-container">
+        <h1>Delete Dish</h1>
+
+        <div class="confirmation-message">
+            <p>Are you sure you want to delete <strong>"{{ food.title }}"</strong>?</p>
+            <p style="color: #dc3545;">This action cannot be undone.</p>
+        </div>
+
+        <form method="post"> 
+            {% csrf_token %}
+            <button type="submit">Yes, Delete Permanently</button>
+            <a href="{% url 'food:food_details' food.pk %}" class="btn-cancel">Cancel and Go Back</a>
+        </form>
+    </div>
+{% endblock %}

@@ -1,5 +1,6 @@
 from django.core.validators import MinValueValidator
 from django.db import models
+from django.utils.text import slugify
 
 from common.models import Allergy
 from common.validators import FileSizeValidator
@@ -56,3 +57,9 @@ class Food(models.Model):
         unique=True,
         blank=True,
     )
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(f"{self.title}")
+
+        super().save(*args, **kwargs)

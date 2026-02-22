@@ -1,0 +1,17 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+<div class="allergy-check-container">
+    <h2>Before you see our delicious menu...</h2>
+    <h1>Do you have any food allergies?</h1>
+
+    <div class="button-group">
+        <a href="{% url 'food:food_allergies' %}" class="btn btn-yes">
+            Yes, I do have allergies.
+        </a>
+
+        <a href="{% url 'food:food_menu' %}" class="btn btn-no">
+            No, I do not have any allergies.
+        </a>
+    </div>
+</div>

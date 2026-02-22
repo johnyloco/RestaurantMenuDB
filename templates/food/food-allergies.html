@@ -1,0 +1,63 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+
+{% block title %}{{ food.title }}Food Allergies{% endblock %}
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/food/food-allergies.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="allergy-container">
+    <h2>Do you have allergies?</h2>
+    <div class="filter-controls">
+        <a href="{% url 'food:food_menu' %}" class="btn-no">No</a>
+        <button type="button" class="btn-yes"
+                onclick="document.getElementById('allergy-form').style.display='block'">
+            Yes
+        </button>
+    </div>
+</div>
+
+<div id="allergy-form">
+    <form method="get" action="{% url 'food:food_menu' %}">
+        <h3>Select your allergies:</h3>
+        <div class="form-fields">
+            {{ filter_form.as_p }}
+        </div>
+        <div class="form-buttons">
+            <button type="submit" class="btn-submit">Apply Filter</button>
+            <button type="button" class="btn-cancel" onclick="document.getElementById('allergy-form').style.display='none'">Cancel</button>
+        </div>
+    </form>
+</div>
+
+<hr>
+
+<div class="menu-list">
+    {% for food in foods %}
+        <div class="food-item">
+            {% if food.image %}
+                <img src="{{ food.image.url }}" alt="{{ food.title }}">
+            {% endif %}
+
+            <h3>{{ food.title }}</h3>
+            <p class="price">{{ food.price }} CHF</p>
+            <p>{{ food.description|truncatewords:20 }}</p>
+
+            <div class="actions">
+                <a href="{% url 'food:details_food' food.pk %}" class="details-link">Details</a>
+                <a href="{% url 'food:edit_food' food.pk %}" class="edit-link">Edit</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<div class="admin-buttons">
+    <a href="{% url 'food:food_add' %}" class="card-link">
+        <div class="admin-card">
+            <h3>+ Add New Item</h3>
+        </div>
+    </a>
+</div>
+{% endblock %}

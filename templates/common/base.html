@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'images/foodfavicon.png' %}">
+    <meta name="author" content="Aleks">
+    {% block extra_head %}
+
+    {% endblock %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common/home.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common/main.css' %}">
+</head>
+
+<body>
+    {% include 'common/nav.html' %}
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    {% include 'common/footer.html' %}
+</body>
+</html>
