@@ -83,3 +83,15 @@ The app also allows for the management of drinks and wines. This is crucial beca
 <img width="2749" height="1585" alt="Screenshot 2026-02-23 155237" src="https://github.com/user-attachments/assets/fd1ac14f-0647-4d27-a827-88295e4d9c88" />
 <img width="2889" height="1560" alt="Screenshot 2026-02-23 155536" src="https://github.com/user-attachments/assets/034a6763-576f-42b5-8844-b06a426d82a4" />
 <img width="2478" height="1575" alt="Screenshot 2026-02-23 155648" src="https://github.com/user-attachments/assets/500a74dd-a07d-49f8-b044-b0e7cd80f259" />
+
+
+## 🛠️How to run the app 
+**-Requirment.txt**
+asgiref==3.11.1
+Django==6.0.2
+pillow==12.1.1
+psycopg2-binary==2.9.11
+python-decouple==3.8
+python-dotenv==1.2.1
+sqlparse==0.5.5
+tzdata==2025.3
