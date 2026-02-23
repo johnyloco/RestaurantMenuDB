@@ -1,7 +1,7 @@
-🍷 # Gastronomy Menu & Allergy Safety App #
+🍷 # Gastronomy Menu & Allergy Safety App
 
 
-👨‍💻 ## About the Author ##
+👨‍💻 ## About the Author
 
 Hi, my name is Aleks Popov.
 My career is driven by two great passions:
@@ -20,7 +20,7 @@ Working in 5-star hotels has taught me that taking care of a guest means, above 
 
 
 
-🛠️ ##How to Use the App##
+🛠️ ##How to Use the App
 
 
 **1. The Home Page***
