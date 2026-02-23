@@ -7,6 +7,13 @@
 {% endblock %}
 
 {% block content %}
+    <header>
+        <figure>
+            <figcaption><h1>Drinks list</h1></figcaption>
+            <img src="{% static 'images/food_images/cocktails3c.jpg' %}" alt="Drinks Menu">
+        </figure>
+    </header>
+
     <main>
         <div class="filter-header">
             <button onclick="document.getElementById('allergy-form').toggleAttribute('hidden')">

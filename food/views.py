@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, UpdateView, DeleteView, CreateView, ListView, DetailView
 
@@ -81,6 +81,14 @@ class AddFood(CreateView):
         else:
             form = FoodForm()
         return render(request, 'food/food_add.html', {'form': form})
+
+    def form_valid(self, form):
+        # Grab the uploaded file from the form field named 'image'
+        file = self.request.FILES.get('image')
+        if file:
+            # Attach it to a temporary attribute for the save() method
+            form.instance.uploaded_image_file = file
+        return super().form_valid(form)
 
 
 

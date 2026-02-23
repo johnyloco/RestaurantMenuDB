@@ -2,8 +2,10 @@ from django.db import models
 from django.utils.text import slugify
 
 from common.models import Allergy
-from common.validators import FileSizeValidator, RangeValidator
+from common.validators import RangeValidator
 
+
+# Drinks Models
 
 class Drink(models.Model):
     class DrinkCategory(models.TextChoices):
@@ -51,8 +53,6 @@ class Drink(models.Model):
     description = models.TextField()
 
     image = models.ImageField(
-        upload_to='drinks_images/',
-        validators=[FileSizeValidator(max_mb=5)],
         null=True,
         blank=True
     )
@@ -77,6 +77,9 @@ class Drink(models.Model):
 
         super().save(*args, **kwargs)
 
+
+
+# Wine Models
 
 class Wine(models.Model):
     class WineCategory(models.TextChoices):
@@ -105,8 +108,6 @@ class Wine(models.Model):
     description = models.TextField()
 
     image = models.ImageField(
-        upload_to='wines_images/',
-        validators=[FileSizeValidator(max_mb=5)],
         null=True,
         blank=True
     )
