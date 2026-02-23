@@ -1,0 +1,25 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}Add drink {% endblock %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/food/food-cud-operation.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="add-container">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+            <div class="form-actions">
+                <button type="submit">Save Drink</button>
+                <a href="{% url 'drinks:drink-menu' %}" class="btn">Cancel</a>
+            </div>
+        </form>
+
+    </div>
+
+{% endblock %}

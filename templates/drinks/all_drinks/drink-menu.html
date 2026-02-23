@@ -1,17 +1,62 @@
 {% extends 'common/base.html' %}
 {% load static %}
 
-<div class="allergy-check-container">
-    <h2>Before you see our delicious menu...</h2>
-    <h1>Do you have any food allergies?</h1>
+{% block title %}Drink Menu{% endblock %}
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/food/menu-style.css' %}">
+{% endblock %}
 
-    <div class="button-group">
-        <a href="{% url 'food:food_allergies' %}" class="btn btn-yes">
-            Yes, I do have allergies.
-        </a>
+{% block content %}
+    <main>
+        <div class="filter-header">
+            <button onclick="document.getElementById('allergy-form').toggleAttribute('hidden')">
+                Filter by Allergies
+            </button>
+            <a href="{% url 'drinks:drink-menu' %}" class="btn">No allergies</a>
+        </div>
 
-        <a href="{% url 'food:food_menu' %}" class="btn btn-no">
-            No, I do not have any allergies.
-        </a>
-    </div>
-</div>
+        <div id="allergy-form" hidden>
+            <form method="get">
+                {{ filter_form.as_p }}
+                <button type="submit">Apply</button>
+            </form>
+        </div>
+
+        <div class="admin-buttons">
+            <a href="{% url 'drinks:drink-add' %}" class="card-link">
+                <div class="admin-card">
+                    <h3>+ Add New Item</h3>
+                </div>
+            </a>
+        </div>
+
+        <div class="drink-menu">
+            {% regroup drinks by get_category_display as category_list %}
+
+            {% for category in category_list %}
+                <div class="drink-section">
+                    <h2>{{ category.grouper }}</h2>
+
+                    {% for drink in category.list %}
+                        <a href="{% url 'drinks:drink-details' drink.pk %}">
+                            <div class="dish">
+                                <h3>{{ drink.title }}</h3>
+
+                                <span class="alergies">
+                            Contains:
+                                    {% for allergy in drink.allergies.all %}
+                                        {{ allergy.name }}{% if not forloop.last %}, {% endif %}
+                                    {% empty %} None
+                                    {% endfor %}
+                        </span>
+
+                                <p>{{ drink.description }}</p>
+                                <span class="price">{{ drink.price }} CHF</span>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </main>
+{% endblock %}

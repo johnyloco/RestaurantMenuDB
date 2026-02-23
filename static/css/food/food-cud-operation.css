@@ -98,3 +98,12 @@ button[type="submit"]:hover {
     color: #555;
     line-height: 1.6;
 }
+
+.filter-form {
+    background: #fdfdfd;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    border: 1px solid #eee;
+}
+

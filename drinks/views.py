@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView, CreateView
 
+from common.forms import AllergyFilterForm
 from drinks import models
 from drinks.forms import DrinkForm, WineForm
 from drinks.models import Drink, Wine
@@ -10,9 +11,25 @@ from drinks.models import Drink, Wine
 #Drinks class based views
 class DrinkMenu(ListView):
     model = Drink
-    form_class = DrinkForm
     template_name = 'drinks/all_drinks/drink-menu.html'
     context_object_name = 'drinks'
+
+    def get_queryset(self):
+        #Drink object
+        queryset = Drink.objects.all().order_by('category')
+
+        selected_allergies = self.request.GET.getlist('selected_allergies')
+
+        if selected_allergies:
+            queryset = queryset.exclude(allergies__id__in=selected_allergies).distinct()
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Initializes the form with GET data so checkboxes stay remembered
+        context['filter_form'] = AllergyFilterForm(self.request.GET)
+        return context
 
 class DrinkDetails(DetailView):
     model = Drink
@@ -37,12 +54,31 @@ class DeleteDrink(DeleteView):
     success_url = reverse_lazy('drinks:drink-menu')
 
 
+
+
     #Wines class based views
 class WineMenu(ListView):
     model = Wine
     form_class = WineForm
     template_name = 'drinks/wine/wine-menu.html'
     context_object_name = 'wines'
+
+    def get_queryset(self):
+        #Wine object
+        queryset = Wine.objects.all().order_by('category')
+
+        selected_allergies = self.request.GET.getlist('selected_allergies')
+
+        if selected_allergies:
+            queryset = queryset.exclude(allergies__id__in=selected_allergies).distinct()
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Initializes the form with GET data so checkboxes stay remembered
+        context['filter_form'] = AllergyFilterForm(self.request.GET)
+        return context
 
 class WineDetails(DetailView):
     model = Wine

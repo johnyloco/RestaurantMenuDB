@@ -21,6 +21,12 @@ main {
     max-width: 80vw;
 }
 
+/* The Box Styling:
+   This ensures dynamic loops (.drink-section, .food-section)
+   and hardcoded classes (.starters, .mains, .desserts) look identical.
+*/
+main .drink-section,
+main .food-section,
 main .starters,
 main .mains,
 main .desserts {
@@ -30,6 +36,7 @@ main .desserts {
     box-shadow: rgba(181, 177, 177, 0.5) 5px 5px 5px, rgba(119, 119, 119, 0.5) -5px -5px 5px;
 }
 
+/* Filters & Buttons */
 .filter-header {
     display: flex;
     justify-content: center;
@@ -37,35 +44,20 @@ main .desserts {
     margin: 30px 0;
 }
 
-.filter-header .btn {
-    background-color: #007bff;
-    color: white;
+.filter-header .btn, .filter-header button {
     padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: opacity 0.2s;
     text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    font-size: 0.9em;
-    transition: opacity 0.2s;
 }
 
-.filter-header button {
-    background-color: #dc3545;
-    color: white;
-    padding: 12px 25px;
-    border-radius: 5px;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    font-size: 0.9em;
-    transition: opacity 0.2s;
-}
-
-.filter-header .btn:hover,
-.filter-header button:hover {
-    opacity: 0.8;
-}
+.filter-header .btn { background-color: #007bff; color: white; }
+.filter-header button { background-color: #dc3545; color: white; }
+.filter-header .btn:hover, .filter-header button:hover { opacity: 0.8; }
 
 #allergy-form {
     background-color: #fdfdfd;
@@ -86,7 +78,9 @@ main .desserts {
     margin-top: 10px;
 }
 
-.foodmenu a {
+/* Hover & Allergy Logic: Updated to support all class variations */
+.drink-menu a,
+.food-menu a{
     text-decoration: none;
     color: inherit;
     display: block;
@@ -97,11 +91,13 @@ main .desserts {
     transition: background-color 0.3s ease;
 }
 
-.foodmenu a:hover .dish {
+.drink-menu a:hover .dish,
+.food-menu a:hover .dish{
     background-color: rgb(255, 255, 255);
     cursor: pointer;
 }
 
+/* THE HOVER EFFECT */
 .dish .alergies {
     display: block;
     font-size: 0.8em;
@@ -111,7 +107,8 @@ main .desserts {
     transition: opacity 0.3s ease;
 }
 
-.foodmenu a:hover .alergies {
+.drink-menu a:hover .alergies,
+.food-menu a:hover .alergies{
     opacity: 1;
 }
 
@@ -121,15 +118,8 @@ main .desserts {
     margin-top: 5px;
 }
 
-/* Admin Button repeating */
-
-
-.admin-buttons {
-    margin: 50px 0;
-    display: flex;
-    justify-content: center;
-}
-
+/* Admin Styling */
+.admin-buttons { margin: 50px 0; display: flex; justify-content: center; }
 .admin-card {
     border: 2px dashed #007bff;
     padding: 20px 40px;
@@ -137,12 +127,5 @@ main .desserts {
     color: #007bff;
     transition: 0.3s;
 }
-
-.admin-card:hover {
-    background: #007bff;
-    color: white;
-}
-
-.card-link {
-    text-decoration: none;
-}
+.admin-card:hover { background: #007bff; color: white; }
+.card-link { text-decoration: none; }

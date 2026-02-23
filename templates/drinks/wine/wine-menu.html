@@ -1,0 +1,71 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}Wine List{% endblock %}
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/food/menu-style.css' %}">
+{% endblock %}
+
+{% block content %}
+    <header>
+        <figure>
+            <figcaption><h1>Wine list</h1></figcaption>
+            <img src="{% static 'images/le3c.png' %}" alt="Wine Menu">
+        </figure>
+    </header>
+
+    <main>
+        <div class="filter-header">
+            <button onclick="document.getElementById('allergy-form').toggleAttribute('hidden')">
+                Filter by Allergies
+            </button>
+            <a href="{% url 'drinks:wine-menu' %}" class="btn">No allergies</a>
+        </div>
+
+        <div id="allergy-form" hidden>
+            <form method="get">
+                {{ filter_form.as_p }}
+                <button type="submit">Apply</button>
+            </form>
+        </div>
+
+        <div class="admin-buttons">
+            <a href="{% url 'drinks:wine-add' %}" class="card-link">
+                <div class="admin-card">
+                    <h3>+ Add New Wine</h3>
+                </div>
+            </a>
+        </div>
+
+        <div class="drink-menu">
+            {% regroup wines by get_category_display as category_list %}
+
+            {% for category in category_list %}
+                <div class="drink-section">
+                    <h2>{{ category.grouper }}</h2>
+
+                    {% for wine in category.list %}
+                        <a href="{% url 'drinks:wine-details' wine.pk %}">
+                            <div class="dish">
+                                <h3>{{ wine.title }}</h3>
+
+                                <span class="alergies">
+                                    Contains:
+                                    {% for allergy in wine.allergies.all %}
+                                        {{ allergy.name }}{% if not forloop.last %}, {% endif %}
+                                    {% empty %} None
+                                    {% endfor %}
+                                </span>
+
+                                <p>{{ wine.description }}</p>
+                                <span class="price">{{ wine.price }} CHF</span>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            {% empty %}
+                <p>No wines available at the moment.</p>
+            {% endfor %}
+        </div>
+    </main>
+{% endblock %}
