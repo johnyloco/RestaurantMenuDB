@@ -15,15 +15,9 @@ class FoodForm(forms.ModelForm):
         widgets = {
             'publishing_date': forms.DateInput(attrs={'type': 'date'}),
             'description': forms.Textarea(attrs={'rows': 3, 'placeholder': 'Describe the dish...'}),
+            'allergies': forms.CheckboxSelectMultiple(),
         }
 
-class AllergyFilterForm(forms.Form):
-    # We use ModelMultipleChoiceField to get all allergies from the DB
-    selected_allergies = forms.ModelMultipleChoiceField(
-        queryset=Allergy.objects.all(),
-        widget=forms.CheckboxSelectMultiple,
-        required=False,
-        label="Select allergies you HAVE:"
-    )
+
 
 

@@ -106,7 +106,7 @@ nav ul {
 
 }
 
-/* End Dropdown panel styles 
+/* End Dropdown panel styles
 
 
 /* Show dropdown on hover */
@@ -248,27 +248,45 @@ main #extra figure img {
 
 /*Footer styles */
 footer {
-    text-align: center;
-}
-
-footer ul li {
-    display: inline-block;
-}
-
-.footer-button {
-    display: inline-block;
-    text-align: center;
-    background-color: green;
-    border-radius: 50px;
-    padding: 10px 20px 10px 20px;
+    width: 90vw;
+    margin: 50px auto 30px auto;
+    padding: 25px;
+    background: linear-gradient(to bottom, #444, #111);
     color: white;
-    text-decoration: none;
-}
-.footer-button:hover {
-    background-color: darkgreen;
-    box-shadow: #000 5px 5px 5px;
+    border-radius: 50px;
+    box-shadow: 5px 5px 5px #9c9c9c;
+
+    text-align: center;
 }
 
-/* End Footer styles */
+.footer-content p {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    color: #f2f2f2;
+    font-weight: bold;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.footer-item {
+    color: #f2f2f2;
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.footer-item:hover {
+    background-color: #139c19;
+    color: #fafafa;
+    box-shadow: #000 5px 5px 5px;
+    transform: translateY(-2px);
+}
 
 

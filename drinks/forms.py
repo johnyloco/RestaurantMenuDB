@@ -10,7 +10,9 @@ class DrinkForm(forms.ModelForm):
         widgets = {
             'publishing_date': forms.DateInput(attrs={'type': 'date'}),
             'description': forms.Textarea(attrs={'rows': 3}),
+            'allergies': forms.CheckboxSelectMultiple(),
         }
+
 
 class WineForm(forms.ModelForm):
     class Meta:
@@ -20,4 +22,5 @@ class WineForm(forms.ModelForm):
         widgets = {
             'publishing_date': forms.DateInput(attrs={'type': 'date'}),
             'description': forms.Textarea(attrs={'rows': 3}),
+            'allergies': forms.CheckboxSelectMultiple(),
         }

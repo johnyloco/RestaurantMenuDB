@@ -7,3 +7,5 @@ from common.models import Allergy
 class AllergyAdmin(admin.ModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
+
+

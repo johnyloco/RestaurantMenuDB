@@ -1,7 +1,7 @@
 {% extends 'common/base.html' %}
 {% load static %}
 
-{% block title %}Add New Dish{% endblock %}
+{% block title %}Add Allergy{% endblock %}
 
 {% block extra_head %}
     <link rel="stylesheet" href="{% static 'css/food/food-cud-operation.css' %}">
@@ -9,17 +9,18 @@
 
 {% block content %}
 <div class="add-container">
-    <h1>Add New Dish</h1>
-
-    <form method="post" enctype="multipart/form-data">
+    <h1>Add New Allergy</h1>
+    <h2>Please add all kind of allergies to your restaurant</h2>
+    
+    <form method="post">
         {% csrf_token %}
-
         {{ form.as_p }}
-
+        
         <div class="form-actions">
-            <button type="submit">Save Dish</button>
-            <a href="{% url 'food:food_menu' %}" class="btn">Cancel</a>
+            <button type="submit">Save Allergy</button>
+            <a href="{% url 'common:add_allergy' %}" class="btn">Cancel</a>
         </div>
     </form>
 </div>
+    
 {% endblock %}

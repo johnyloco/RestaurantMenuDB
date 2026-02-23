@@ -3,8 +3,9 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView, UpdateView, DeleteView, CreateView, ListView, DetailView
 
 from common.models import Allergy
-from food.forms import FoodForm, AllergyFilterForm
+from food.forms import FoodForm
 from food.models import Food
+from common.forms import AllergyFilterForm
 
 
 
@@ -69,6 +70,17 @@ class AddFood(CreateView):
     form_class = FoodForm
     template_name = 'food/food-add.html'
     success_url = reverse_lazy('food:food_menu')
+
+    def add_food(request):
+        if request.method == 'POST':
+            form = FoodForm(request.POST, request.FILES)
+            if form.is_valid():
+                # ManyToMany relationships are saved automatically by form.save()
+                form.save()
+                return redirect('food:food_menu')
+        else:
+            form = FoodForm()
+        return render(request, 'food/food_add.html', {'form': form})
 
 
 

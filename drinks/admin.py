@@ -5,12 +5,14 @@ from drinks.models import Drink, Wine
 
 @admin.register(Drink)
 class DrinkAdmin(admin.ModelAdmin):
+    filter_horizontal = ('allergies',)
     list_display = ('title', 'description', 'price', 'category')
     list_filter = ('title', 'description', 'price', 'category')
     search_fields = ('title', 'description', 'price', 'category')
 
 @admin.register(Wine)
 class WineAdmin(admin.ModelAdmin):
+    filter_horizontal = ('allergies',)
     list_display = ('title', 'description', 'price', 'category')
     list_filter = ('title', 'description', 'price', 'category')
     search_fields = ('title', 'description', 'price', 'category')

@@ -1,0 +1,49 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}404 - Page Not Found{% endblock %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/food/food-cud-operation.css' %}">
+    <style>
+        .error-container {
+            text-align: center;
+            padding: 50px 20px;
+        }
+        .error-code {
+            font-size: 8em;
+            margin: 0;
+            color: #139c19; /* Your signature Green */
+            text-shadow: -3px 3px 0px #000;
+        }
+        .error-message {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            color: #444;
+        }
+        .error-image {
+            max-width: 300px;
+            margin-bottom: 20px;
+            border-radius: 50%;
+            box-shadow: rgba(119, 119, 119, 0.5) 5px 5px 5px;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="add-container error-container">
+    <h1 class="logo2" style="margin: 0 auto;">Opps! Page Missing</h1>
+    <p class="error-code">404</p>
+
+    <p class="error-message">
+        It looks like this dish isn't on our menu today.
+        The page you are looking for might have been moved or deleted.
+    </p>
+
+    <div class="form-actions" style="justify-content: center;">
+        <a href="{% url 'common:home' %}" class="item" style="text-decoration: none; display: inline-block;">
+            Return to Restaurant
+        </a>
+    </div>
+</div>
+{% endblock %}

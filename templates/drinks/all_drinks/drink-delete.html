@@ -1,0 +1,25 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}Delete Drink{% endblock %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/food/food-cud-operation.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="delete-container">
+        <h1>Delete Drink</h1>
+
+        <div class="confirmation-message">
+            <p>Are you sure you want to delete <strong>"{{ drink.title }}"</strong>?</p>
+            <p style="">This action cannot be undone.</p>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Yes, Delete Permanently</button>
+            <a href="{% url 'drinks:drink-details' drink.pk %}" class="btn-cancel">Cancel and Go Back</a>
+        </form>
+    </div>
+{% endblock %}

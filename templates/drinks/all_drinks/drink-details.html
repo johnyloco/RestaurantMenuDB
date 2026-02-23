@@ -1,0 +1,48 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}{{ drink.title }} Details{% endblock %}
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/food/menu-details.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>{{ drink.title }}</h1>
+
+        <div class="image-box">
+            {% if drink.image %}
+                <img src="{{ drink.image.url }}" alt="{{ drink.title }}" class="food-display-img">
+            {% else %}
+                <div class="no-photo-placeholder">
+                    <span>No Photo Available</span>
+                </div>
+            {% endif %}
+        </div>
+
+        <ul>
+            <li><strong>Category:</strong> {{ drink.get_category_display }}</li>
+            <li><strong>Price:</strong> {{ drink.price }} CHF</li>
+            <li><strong>Description:</strong> {{ drink.description }}</li>
+            <li><strong>Published on:</strong> {{ drink.publishing_date }}</li>
+
+            <li><strong>Allergies:</strong>
+                {% if drink.allergies.all %}
+                    {% for allergy in drink.allergies.all %}
+                        {{ allergy.name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                {% else %}
+                    None
+                {% endif %}
+            </li>
+        </ul>
+
+        <hr>
+
+        <div class="actions">
+            <a href="{% url 'drinks:drink-edit' drink.pk %}">Edit this drink</a> |
+            <a href="{% url 'drinks:drink-delete' drink.pk %}" style="color: red;">Delete this drink</a> |
+            <a href="{% url 'drinks:drink-menu' %}">Back to Drink Menu</a>
+        </div>
+    </div>
+{% endblock %}

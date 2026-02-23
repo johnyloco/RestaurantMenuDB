@@ -1,10 +1,9 @@
 {% extends 'common/base.html' %}
 {% load static %}
 
-
-{% block title %}{{ food.title }}Food Menu{% endblock %}
+{% block title %}Food Menu{% endblock %}
 {% block extra_head %}
-    <link rel="stylesheet" href="{% static 'css/food/food-menu.css' %}">
+    <link rel="stylesheet" href="{% static 'css/food/menu-style.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -16,19 +15,20 @@
     </header>
 
     <main>
-        <div class="filter-header" style="margin-bottom: 20px;">
+        <div class="filter-header">
             <button onclick="document.getElementById('allergy-form').toggleAttribute('hidden')">
-                Filtrer par Allergies
+                Filter by Allergies
             </button>
-            <a href="{% url 'food:food_menu' %}" class="btn">Réinitialiser</a>
+            <a href="{% url 'food:food_menu' %}" class="btn">No allergies</a>
         </div>
 
         <div id="allergy-form" hidden>
             <form method="get">
                 {{ filter_form.as_p }}
-                <button type="submit">Appliquer</button>
+                <button type="submit">Apply</button>
             </form>
         </div>
+
         <div class="admin-buttons">
             <a href="{% url 'food:food_add' %}" class="card-link">
                 <div class="admin-card">
@@ -37,71 +37,35 @@
             </a>
         </div>
 
-        <div class="foodmenu">
+        <div class="food-menu">
+            {% regroup foods by get_category_display as category_list %}
 
-            <div class="starters">
-                <h2>Nos Entrées</h2>
-                {% for food in foods %}
-                    {% if food.category == 'STARTER' %}
+            {% for category in category_list %}
+                <div class="food-section">
+                    <h2>{{ category.grouper }}</h2>
+
+                    {% for food in category.list %}
                         <a href="{% url 'food:food_details' food.pk %}" style="text-decoration: none; color: inherit;">
                             <div class="dish">
                                 <h3>{{ food.title }}</h3>
+
                                 <span class="alergies">
-                                Contains:
+                                    Contains:
                                     {% for allergy in food.allergies.all %}
                                         {{ allergy.name }}{% if not forloop.last %}, {% endif %}
-                                    {% empty %}Aucun{% endfor %}
-                            </span>
+                                    {% empty %} None
+                                    {% endfor %}
+                                </span>
+
                                 <p>{{ food.description }}</p>
                                 <span class="price">{{ food.price }} CHF</span>
                             </div>
                         </a>
-                    {% endif %}
-                {% endfor %}
-            </div>
-
-            <div class="mains">
-                <h2>Nos Plats Principaux</h2>
-                {% for food in foods %}
-                    {% if food.category == 'MAIN' %}
-                        <a href="{% url 'food:food_details' food.pk %}" style="text-decoration: none; color: inherit;">
-                            <div class="dish">
-                                <h3>{{ food.title }}</h3>
-                                <span class="alergies">
-                                Contains:
-                                    {% for allergy in food.allergies.all %}
-                                        {{ allergy.name }}{% if not forloop.last %}, {% endif %}
-                                    {% empty %}Aucun{% endfor %}
-                            </span>
-                                <p>{{ food.description }}</p>
-                                <span class="price">{{ food.price }} CHF</span>
-                            </div>
-                        </a>
-                    {% endif %}
-                {% endfor %}
-            </div>
-
-            <div class="desserts">
-                <h2>Nos Desserts</h2>
-                {% for food in foods %}
-                    {% if food.category == 'DESSERT' %}
-                        <a href="{% url 'food:food_details' food.pk %}" style="text-decoration: none; color: inherit;">
-                            <div class="dish">
-                                <h3>{{ food.title }}</h3>
-                                <span class="alergies">
-                                Contains:
-                                    {% for allergy in food.allergies.all %}
-                                        {{ allergy.name }}{% if not forloop.last %}, {% endif %}
-                                    {% empty %}Aucun{% endfor %}
-                            </span>
-                                <p>{{ food.description }}</p>
-                                <span class="price">{{ food.price }} CHF</span>
-                            </div>
-                        </a>
-                    {% endif %}
-                {% endfor %}
-            </div>
-
+                    {% endfor %}
+                </div>
+            {% empty %}
+                <p>No food available at the moment.</p>
+            {% endfor %}
         </div>
     </main>
 {% endblock %}

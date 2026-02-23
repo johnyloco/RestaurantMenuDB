@@ -1,0 +1,48 @@
+{% extends 'common/base.html' %}
+{% load static %}
+
+{% block title %}{{ wine.title }} Details{% endblock %}
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/food/menu-details.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>{{ wine.title }}</h1>
+
+        <div class="image-box">
+            {% if wine.image %}
+                <img src="{{ wine.image.url }}" alt="{{ wine.title }}" class="food-display-img">
+            {% else %}
+                <div class="no-photo-placeholder">
+                    <span>No Photo Available</span>
+                </div>
+            {% endif %}
+        </div>
+
+        <ul>
+            <li><strong>Category:</strong> {{ wine.get_category_display }}</li>
+            <li><strong>Price:</strong> {{ wine.price }} CHF</li>
+            <li><strong>Description:</strong> {{ wine.description }}</li>
+            <li><strong>Published on:</strong> {{ wine.publishing_date }}</li>
+
+            <li><strong>Allergies:</strong>
+                {% if wine.allergies.all %}
+                    {% for allergy in wine.allergies.all %}
+                        {{ allergy.name }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                {% else %}
+                    None
+                {% endif %}
+            </li>
+        </ul>
+
+        <hr>
+
+        <div class="actions">
+            <a href="{% url 'drinks:wine-edit' wine.pk %}">Edit this wine</a> |
+            <a href="{% url 'drinks:wine-delete' wine.pk %}" style="color: red;">Delete this wine</a> |
+            <a href="{% url 'drinks:wine-menu' %}">Back to Wine Menu</a>
+        </div>
+    </div>
+{% endblock %}
