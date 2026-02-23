@@ -38,8 +38,6 @@ class Food(models.Model):
     description = models.TextField()
 
     image = models.ImageField(
-        upload_to='food_images/',
-        validators=[FileSizeValidator(max_mb=5)],
         null=True,
         blank=True
     )
