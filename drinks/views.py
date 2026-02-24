@@ -14,6 +14,7 @@ class DrinkMenu(ListView):
     template_name = 'drinks/all_drinks/drink-menu.html'
     context_object_name = 'drinks'
 
+    # Filter for the allergies
     def get_queryset(self):
         #Drink object
         queryset = Drink.objects.all().order_by('category')
@@ -73,6 +74,8 @@ class WineMenu(ListView):
     template_name = 'drinks/wine/wine-menu.html'
     context_object_name = 'wines'
 
+
+    # Filter for the allergies
     def get_queryset(self):
         #Wine object
         queryset = Wine.objects.all().order_by('category')
@@ -95,7 +98,7 @@ class WineDetails(DetailView):
     form_class = WineForm
     template_name = 'drinks/wine/wine-details.html'
 
-class AddWine(CreateView): # Use CreateView for adding new items
+class AddWine(CreateView):
     model = Wine
     form_class = WineForm
     template_name = 'drinks/wine/wine-add.html'

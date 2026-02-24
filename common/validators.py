@@ -1,12 +1,12 @@
 from django.core.exceptions import ValidationError
 from django.utils.deconstruct import deconstructible
 
-
+# File size validator
 @deconstructible
 class FileSizeValidator:
     def __init__(self, max_mb, message=None):
         self.max_mb = max_mb
-        # Convert MB to Bytes (1 MB = 1024 * 1024 bytes)
+        # Convert MB into Bytes (1  MB = 1024 * 1024  bytes)
         self.max_bytes = max_mb * 1024 * 1024
         self.message = message or f"Maximum file size allowed is {max_mb}MB."
 
@@ -23,6 +23,7 @@ class FileSizeValidator:
 
 
 
+# Range value validator
 @deconstructible
 class RangeValidator:
     def __init__(self, min_value, max_value, message=None):

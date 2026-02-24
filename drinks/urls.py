@@ -3,6 +3,7 @@ from drinks import views
 
 app_name = 'drinks'
 
+
 # Patterns for All kind of Drinks except wine (Coffee, Tea, Spirits, etc.)
 drink_patterns = [
     path('', views.DrinkMenu.as_view(), name='drink-menu'),

@@ -5,12 +5,14 @@ from common.forms import AllergyForm
 from common.models import Allergy
 
 
-# Create your views here.
+# More like a test view
 def home(request: HttpRequest) -> HttpResponse:
     context = {"message": "Welcome to the Restaurant!"}
     return render(request, 'common/home.html', context)
 
+# Common
 
+# Allergy
 def add_allergy(request):
     if request.method == "POST":
         form = AllergyForm(request.POST)
@@ -18,10 +20,10 @@ def add_allergy(request):
             selected_allergies = form.cleaned_data.get('names')
 
             for allergy_code in selected_allergies:
-                # This manually creates the database record if it doesn't exist
+                # This MANUALLY creates the database record if it doesn't exist
                 Allergy.objects.get_or_create(name=allergy_code)
 
-            return redirect('common:home')  # Change this to your success URL
+            return redirect('common:home')
     else:
         form = AllergyForm()
 

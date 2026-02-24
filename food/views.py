@@ -20,11 +20,11 @@ class FoodAllergies(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        # Look for 'selected_allergies' in the URL (e.g., ?selected_allergies=1&selected_allergies=2)
+        # Looks for 'selected_allergies' in the URL (e.g., ?selected_allergies=1&selected_allergies=2)
         allergies = self.request.GET.getlist('selected_allergies')
 
         if allergies:
-            # We want food that does NOT have any of the selected allergies
+            # Showing items excepting the selected allergies
             queryset = queryset.exclude(allergies__id__in=allergies).distinct()
 
         return queryset
@@ -36,14 +36,12 @@ class FoodAllergies(ListView):
         return context
 
 
-from django.db.models import Q
-
-
 class FoodMenu(ListView):
     model = Food
     template_name = 'food/food-menu.html'
     context_object_name = 'foods'
 
+    # Filter for the allergies
     def get_queryset(self):
         # Start with all food
         queryset = Food.objects.all()
@@ -60,7 +58,7 @@ class FoodMenu(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Keep the form in the context so the checkboxes stay checked after clicking "Apply"
+        # Keeps the form in the context so the checkboxes stay checked after clicking "Apply"
         context['filter_form'] = AllergyFilterForm(self.request.GET)
         return context
 
@@ -71,16 +69,6 @@ class AddFood(CreateView):
     template_name = 'food/food-add.html'
     success_url = reverse_lazy('food:food_menu')
 
-    def add_food(request):
-        if request.method == 'POST':
-            form = FoodForm(request.POST, request.FILES)
-            if form.is_valid():
-                # ManyToMany relationships are saved automatically by form.save()
-                form.save()
-                return redirect('food:food_menu')
-        else:
-            form = FoodForm()
-        return render(request, 'food/food_add.html', {'form': form})
 
     def form_valid(self, form):
         # Grab the uploaded file from the form field named 'image'
