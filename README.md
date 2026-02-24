@@ -86,12 +86,11 @@ The app also allows for the management of drinks and wines. This is crucial beca
 
 
 ## 🛠️How to run the app 
-**-Requirment.txt**
-asgiref==3.11.1
-Django==6.0.2
-pillow==12.1.1
-psycopg2-binary==2.9.11
-python-decouple==3.8
-python-dotenv==1.2.1
-sqlparse==0.5.5
-tzdata==2025.3
+**.env**
+SECRET_KEY='django-insecure-6)4k1ha0m78osgl(+9mc@&vff(5!q=jn8&6oo2zb@7-l6zmkra'
+DB_NAME=restaurantmenu
+DB_PASS=password
+DB_USER=postgres-user
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DEBUG=True
