@@ -19,6 +19,12 @@ I developed this online menu specifically for the restaurant where I work on the
 Working in 5-star hotels has taught me that taking care of a guest means, above all, taking care of their health. This app is designed to ensure that every guest can dine with confidence, transparency, and safety.
 
 
+**Advice for the author**
+
+I find my app verry well organized and ready to grow up with more futures.
+Please let me know how i can develope it.
+As person and a judge who knows a lot, I am open to hear your point of view and advices to make it more practical and organised.
+
 
 ## 🛠️How to Use the App
 
