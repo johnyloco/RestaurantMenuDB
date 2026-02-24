@@ -53,7 +53,7 @@
                                     Contains:
                                     {% for allergy in wine.allergies.all %}
                                         {{ allergy.name }}{% if not forloop.last %}, {% endif %}
-                                    {% empty %} None
+                                    {% empty %} No allergies
                                     {% endfor %}
                                 </span>
 

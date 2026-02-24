@@ -6,12 +6,12 @@ class AllergyForm(forms.Form):
     names = forms.MultipleChoiceField(
         choices=Allergy.AllergiesChoices.choices,
         widget=forms.CheckboxSelectMultiple(attrs={'class': 'allergy-checkbox'}),
-        label="Select Allergies"
+        label="Select Allergies you HAVE:"
     )
 
 
 class AllergyFilterForm(forms.Form):
-    # We use ModelMultipleChoiceField to get all allergies from the DB
+    # Used ModelMultipleChoiceField to get all allergies from the DB
     selected_allergies = forms.ModelMultipleChoiceField(
         queryset=Allergy.objects.all(),
         widget=forms.CheckboxSelectMultiple,

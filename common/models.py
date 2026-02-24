@@ -1,5 +1,10 @@
+# Here I upload the all small common apps
+
+
 from django.db import models
 
+
+# Allergy data
 class Allergy(models.Model):
     class AllergiesChoices(models.TextChoices):
         CELERY = "CELERY", "Celery"
@@ -29,3 +34,7 @@ class Allergy(models.Model):
     def __str__(self):
         # This returns the readable output label (like "Celery")
         return self.get_name_display()
+
+
+# Food taste pairing
+# Coming soon
